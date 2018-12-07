@@ -9,6 +9,7 @@ public class ActivateAlarm implements RemoteCommands {
 
     @Override
     public void execute() {
-        this.smartHome.getAlarmSystem().setAlarm();
+        SetAlarmState setAlarmState = new SetAlarmState(smartHome.getAlarmSystem());
+        setAlarmState.setAlarm();
     }
 }
