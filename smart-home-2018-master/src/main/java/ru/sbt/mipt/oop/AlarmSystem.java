@@ -3,11 +3,11 @@ package ru.sbt.mipt.oop;
 public class AlarmSystem {
 
     private AlarmSystemState state;
-    private final String pass;
+    private int code;
 
     public AlarmSystem() {
         this.state = AlarmSystemState.OFF;
-        this.pass = "default_password";
+        this.code = "default_password".hashCode();
     }
 
     public void changeState(AlarmSystemState state) {
@@ -16,5 +16,13 @@ public class AlarmSystem {
 
     public AlarmSystemState getState() {
         return this.state;
+    }
+
+    public void setCode(String newCode) {
+        this.code = newCode.hashCode();
+    }
+
+    public int getCode() {
+        return this.code;
     }
 }
