@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class HomeEventsObserver {
+public class HomeEventsObserver implements EventsManager {
     private final Collection<EventProcessor> eventProcessors = new ArrayList();
     private SensorEventProvider sensorEventProvider;
 
