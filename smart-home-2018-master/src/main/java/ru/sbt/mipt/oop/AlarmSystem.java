@@ -2,20 +2,32 @@ package ru.sbt.mipt.oop;
 
 public class AlarmSystem {
 
-    private AlarmSystemState state;
+    private AlarmState state;
     private int code;
 
     public AlarmSystem() {
-        this.state = AlarmSystemState.OFF;
+        this.state = new DeactivateAlarmState(this);
         this.code = "default_password".hashCode();
     }
 
-    public void changeState(AlarmSystemState state) {
+    public void changeState(AlarmState state) {
         this.state = state;
     }
 
-    public AlarmSystemState getState() {
+    public AlarmState getState() {
         return this.state;
+    }
+
+    public void activate(String pass) {
+        this.state.activate(pass);
+    }
+
+    public void deactivate(String pass) {
+        this.state.deactivate(pass);
+    }
+
+    public void setAlarm() {
+        this.state.setAlarm();
     }
 
     public void setCode(String newCode) {
@@ -25,4 +37,5 @@ public class AlarmSystem {
     public int getCode() {
         return this.code;
     }
+
 }
