@@ -8,16 +8,16 @@ public class SetAlarmState implements AlarmState {
     }
 
     @Override
-    public void activate() {
+    public void activate(String pass) {
 
     }
 
     @Override
-    public void deactivate() {
+    public void deactivate(String pass) {
     }
 
     @Override
     public void setAlarm() {
-        this.alarmSystem.changeState(AlarmSystemState.ALARM);
+        this.alarmSystem.changeState(this);
     }
 }
