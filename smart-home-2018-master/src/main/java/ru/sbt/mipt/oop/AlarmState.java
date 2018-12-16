@@ -2,9 +2,9 @@ package ru.sbt.mipt.oop;
 
 public interface AlarmState {
 
-    void activate();
+    void activate(String pass);
 
-    void deactivate();
+    void deactivate(String pass);
 
     void setAlarm();
 
