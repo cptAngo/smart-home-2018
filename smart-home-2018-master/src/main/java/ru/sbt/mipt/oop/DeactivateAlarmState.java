@@ -9,13 +9,15 @@ public class DeactivateAlarmState implements AlarmState {
     }
 
     @Override
-    public void activate() {
+    public void activate(String pass) {
 
     }
 
     @Override
-    public void deactivate() {
-        this.alarmSystem.changeState(AlarmSystemState.OFF);
+    public void deactivate(String pass) {
+        if (pass.hashCode() == this.alarmSystem.getCode()){
+            this.alarmSystem.changeState(this);
+        }
     }
 
     @Override
