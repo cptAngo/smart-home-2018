@@ -6,20 +6,16 @@ public class AlarmEventProcessor implements EventProcessor {
         if(this.isAlarmEvent(sensorEvent)) {
             AlarmSensorEvent event = (AlarmSensorEvent) sensorEvent;
             if (sensorEvent.getType() == SensorEventType.ALARM_ACTIVATE) {
-                ActivateAlarmState activate = new ActivateAlarmState(smartHome.getAlarmSystem());
-                if (event.getCode().hashCode() == smartHome.getAlarmSystem().getCode()) {
-                    activate.activate();
-                }
+                smartHome.getAlarmSystem().changeState(new ActivateAlarmState(smartHome.getAlarmSystem()));
+                smartHome.getAlarmSystem().activate(event.getCode());
             }
             else {
-                DeactivateAlarmState deactivate = new DeactivateAlarmState(smartHome.getAlarmSystem());
-                if (event.getCode().hashCode() == smartHome.getAlarmSystem().getCode()) {
-                    deactivate.deactivate();
-                }
+                smartHome.getAlarmSystem().changeState(new DeactivateAlarmState(smartHome.getAlarmSystem()));
+                smartHome.getAlarmSystem().deactivate(event.getCode());
             }
-            SetAlarmState alarmState = new SetAlarmState(smartHome.getAlarmSystem());
             if (event.getCode().hashCode() != smartHome.getAlarmSystem().getCode()) {
-                alarmState.setAlarm();
+                smartHome.getAlarmSystem().changeState(new SetAlarmState(smartHome.getAlarmSystem()));
+                smartHome.getAlarmSystem().setAlarm();
             }
         }
     }
