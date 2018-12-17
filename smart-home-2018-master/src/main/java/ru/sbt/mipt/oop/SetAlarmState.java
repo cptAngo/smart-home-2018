@@ -14,10 +14,12 @@ public class SetAlarmState implements AlarmState {
 
     @Override
     public void deactivate(String pass) {
+        if (pass.hashCode() == this.alarmSystem.getCode()) {
+            this.alarmSystem.changeState(new DeactivateAlarmState(this.alarmSystem));
+        }
     }
 
     @Override
     public void setAlarm() {
-        this.alarmSystem.changeState(this);
     }
 }
