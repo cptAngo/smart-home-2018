@@ -4,6 +4,7 @@ public class AlarmSystem {
 
     private AlarmState state;
     private int code;
+    private AlarmSystemState type = AlarmSystemState.OFF;
 
     public AlarmSystem() {
         this.state = new DeactivateAlarmState(this);
@@ -11,11 +12,26 @@ public class AlarmSystem {
     }
 
     public void changeState(AlarmState state) {
+
         this.state = state;
+
+        if (state instanceof ActivateAlarmState) {
+            this.type = AlarmSystemState.ON;
+        }
+        if (state instanceof DeactivateAlarmState) {
+            this.type = AlarmSystemState.OFF;
+        }
+        else {
+            this.type = AlarmSystemState.ALARM;
+        }
     }
 
     public AlarmState getState() {
         return this.state;
+    }
+
+    public AlarmSystemState getType() {
+        return this.type;
     }
 
     public void activate(String pass) {
@@ -38,4 +54,7 @@ public class AlarmSystem {
         return this.code;
     }
 
+    public boolean isActivated() {
+        return this.type == AlarmSystemState.ON;
+    }
 }
