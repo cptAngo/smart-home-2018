@@ -1,4 +1,4 @@
-# smart-home
+# Final project for OOP smart-home, SBT MIPT
 
 Project Smart Home implements 'smart home''.
 The house has sensors which are connected to a central server and send events in case of lights on/off doors open/close.
